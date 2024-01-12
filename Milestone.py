@@ -9,6 +9,13 @@ print(data)
 angle=data['Angle']
 diameter=data['WaferDiameter']
 radius=data['WaferDiameter']/2
+if angle <90 :
+  opposite = 270-angle 
+else:
+  if angle > 0 :
+    opposite = angle - 180
+  else :
+    opposite = angle + 180
 x1=radius*math.sin(math.radians(270-angle))
 x2=radius*math.sin(math.radians(angle))
 y1=radius*math.cos(math.radians(270-angle))
@@ -30,8 +37,8 @@ result=[(x1,y1)]
 dx = x2-x1
 dy = y2-y1
 print(dx,dy)
-stepx= dx /(n-1)
-stepy=dy/(n-1)
+stepx= dx /(n-2)
+stepy=dy/(n-2)
 print(stepx,stepy)
 px = x1+stepx
 py=y1+stepy
