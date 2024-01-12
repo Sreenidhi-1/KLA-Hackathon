@@ -1,25 +1,28 @@
 import math
+import numpy as np
 #Reading input file
 data={}
-with open("Milestone1\Input\Testcase3.txt") as file:
+with open("Milestone1\Input\Testcase4.txt") as file:
    for line in file:
       data[line.rstrip().split(':')[0]]=int(line.rstrip().split(':')[1])
 
 print(data)
 angle=data['Angle']
 diameter=data['WaferDiameter']
-radius=data['WaferDiameter']/2
-if angle <90 :
-  opposite = 270-angle 
+radius=(diameter/2)
+print(radius)
+if angle <=180 :
+  opposite = 180-angle 
 else:
-  if angle > 0 :
-    opposite = angle - 180
-  else :
-    opposite = angle + 180
-x1=radius*math.sin(math.radians(270-angle))
-x2=radius*math.sin(math.radians(angle))
-y1=radius*math.cos(math.radians(270-angle))
-y2=radius*math.cos(math.radians(angle))
+    opposite = angle-180
+angle=angle*(math.pi/180)
+opposite=opposite*(math.pi/180)
+x1=radius*math.sin(angle)
+x2=radius*math.sin(opposite)
+y1=radius*math.cos(angle)
+y2=radius*math.cos(opposite)
+
+print(x1,y1,x2,y2)
 points=[[x1,y1],[x2,y2]]
 print(points)
 n=data['NumberOfPoints']
@@ -33,28 +36,37 @@ x1=round(x1,4)
 y1=round(y1,4)
 x2=round(x2,4)
 y2=round(y2,4)
-result=[(x1,y1)]
-dx = x2-x1
+result=[]
+#result=[(x1,y1)]
+"""dx = x2-x1
 dy = y2-y1
 print(dx,dy)
 stepx= dx /(n-2)
 stepy=dy/(n-2)
 print(stepx,stepy)
-px = x1+stepx
-py=y1+stepy
-for i in range(0,n-2):
+px = x1
+py=y1
+for i in range(0,n-1):
     px=round(px,4)
     py=round(py,4)
     result.append((px,py))
     px += stepx
     py += stepy
-result.append((x2,y2))
+#result.append((x2,y2))
 print(len(result))
-print(result)
+print(result)"""
+xx=np.linspace(x1, x2, num=n)
+yy=np.linspace(y1, y2, num=n)
+for i in range(len(xx)):
+   p1=round(xx[i],4)
+   p2=round(yy[i],4)
+   result.append((p2,p1))
+   
+print(len(result))
 for i in result:
     print(str(i))
 #writing in file
-with open('output3.txt', 'w') as f:
+with open('output4.txt', 'w') as f:
     for i in result:
         f.write(str(i).replace(' ', ''))
         f.write('\n')
