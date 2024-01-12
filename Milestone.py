@@ -9,10 +9,14 @@ with open("Milestone1\Input\Testcase4.txt") as file:
 print(data)
 angle=data['Angle']
 diameter=data['WaferDiameter']
-radius=(diameter/2)
+radius=(int(diameter/2))
 print(radius)
-if angle <=180 :
+if angle <90 :
   opposite = 180-angle 
+elif(angle >=90 and angle<180):
+   opposite = angle+180
+elif(angle>=180 and angle<270):
+   opposite=angle-180
 else:
     opposite = angle-180
 angle=angle*(math.pi/180)
@@ -26,8 +30,7 @@ print(x1,y1,x2,y2)
 points=[[x1,y1],[x2,y2]]
 print(points)
 n=data['NumberOfPoints']
-points_on_line=diameter/n
-#equation of line
+
 
 
 
